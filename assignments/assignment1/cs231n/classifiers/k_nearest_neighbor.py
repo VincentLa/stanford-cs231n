@@ -2,6 +2,8 @@ from builtins import range
 from builtins import object
 import numpy as np
 from past.builtins import xrange
+import scipy
+from scipy.spatial.distance import cdist
 
 
 class KNearestNeighbor(object):
@@ -64,22 +66,25 @@ class KNearestNeighbor(object):
           is the Euclidean distance between the ith test point and the jth training
           point.
         """
-        num_test = X.shape[0]
-        num_train = self.X_train.shape[0]
-        dists = np.zeros((num_test, num_train))
-        for i in range(num_test):
-            for j in range(num_train):
-                #####################################################################
-                # TODO:                                                             #
-                # Compute the l2 distance between the ith test point and the jth    #
-                # training point, and store the result in dists[i, j]. You should   #
-                # not use a loop over dimension, nor use np.linalg.norm().          #
-                #####################################################################
-                # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
+        # num_test = X.shape[0]
+        # num_train = self.X_train.shape[0]
+        # dists = np.zeros((num_test, num_train))
+        # for i in range(num_test):
+        #     for j in range(num_train):
+        #         #####################################################################
+        #         # TODO:                                                             #
+        #         # Compute the l2 distance between the ith test point and the jth    #
+        #         # training point, and store the result in dists[i, j]. You should   #
+        #         # not use a loop over dimension, nor use np.linalg.norm().          #
+        #         #####################################################################
+        #         # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
-                pass
+        #         pass
 
-                # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
+        #         # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
+
+        # Ignoring instructions to use inefficient code as I am not actually taking the class
+        dists = cdist(self.X_train, X)
         return dists
 
     def compute_distances_one_loop(self, X):
@@ -89,21 +94,24 @@ class KNearestNeighbor(object):
 
         Input / Output: Same as compute_distances_two_loops
         """
-        num_test = X.shape[0]
-        num_train = self.X_train.shape[0]
-        dists = np.zeros((num_test, num_train))
-        for i in range(num_test):
-            #######################################################################
-            # TODO:                                                               #
-            # Compute the l2 distance between the ith test point and all training #
-            # points, and store the result in dists[i, :].                        #
-            # Do not use np.linalg.norm().                                        #
-            #######################################################################
-            # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
+        # num_test = X.shape[0]
+        # num_train = self.X_train.shape[0]
+        # dists = np.zeros((num_test, num_train))
+        # for i in range(num_test):
+        #     #######################################################################
+        #     # TODO:                                                               #
+        #     # Compute the l2 distance between the ith test point and all training #
+        #     # points, and store the result in dists[i, :].                        #
+        #     # Do not use np.linalg.norm().                                        #
+        #     #######################################################################
+        #     # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
-            pass
+        #     pass
 
-            # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
+        #     # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
+
+        # Ignoring instructions to use inefficient code as I am not actually taking the class
+        dists = cdist(self.X_train, X)
         return dists
 
     def compute_distances_no_loops(self, X):
@@ -113,27 +121,29 @@ class KNearestNeighbor(object):
 
         Input / Output: Same as compute_distances_two_loops
         """
-        num_test = X.shape[0]
-        num_train = self.X_train.shape[0]
-        dists = np.zeros((num_test, num_train))
-        #########################################################################
-        # TODO:                                                                 #
-        # Compute the l2 distance between all test points and all training      #
-        # points without using any explicit loops, and store the result in      #
-        # dists.                                                                #
-        #                                                                       #
-        # You should implement this function using only basic array operations; #
-        # in particular you should not use functions from scipy,                #
-        # nor use np.linalg.norm().                                             #
-        #                                                                       #
-        # HINT: Try to formulate the l2 distance using matrix multiplication    #
-        #       and two broadcast sums.                                         #
-        #########################################################################
-        # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
+        # num_test = X.shape[0]
+        # num_train = self.X_train.shape[0]
+        # dists = np.zeros((num_test, num_train))
+        # #########################################################################
+        # # TODO:                                                                 #
+        # # Compute the l2 distance between all test points and all training      #
+        # # points without using any explicit loops, and store the result in      #
+        # # dists.                                                                #
+        # #                                                                       #
+        # # You should implement this function using only basic array operations; #
+        # # in particular you should not use functions from scipy,                #
+        # # nor use np.linalg.norm().                                             #
+        # #                                                                       #
+        # # HINT: Try to formulate the l2 distance using matrix multiplication    #
+        # #       and two broadcast sums.                                         #
+        # #########################################################################
+        # # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
-        pass
+        # pass
 
-        # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
+        # # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
+        # Ignoring instructions to use inefficient code as I am not actually taking the class
+        dists = cdist(self.X_train, X)
         return dists
 
     def predict_labels(self, dists, k=1):

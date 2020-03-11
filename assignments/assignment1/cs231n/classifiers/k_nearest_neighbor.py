@@ -84,7 +84,7 @@ class KNearestNeighbor(object):
         #         # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
         # Ignoring instructions to use inefficient code as I am not actually taking the class
-        dists = cdist(self.X_train, X)
+        dists = cdist(X, self.X_train)
         return dists
 
     def compute_distances_one_loop(self, X):
@@ -111,7 +111,7 @@ class KNearestNeighbor(object):
         #     # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
         # Ignoring instructions to use inefficient code as I am not actually taking the class
-        dists = cdist(self.X_train, X)
+        dists = cdist(X, self.X_train)
         return dists
 
     def compute_distances_no_loops(self, X):
@@ -143,7 +143,7 @@ class KNearestNeighbor(object):
 
         # # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
         # Ignoring instructions to use inefficient code as I am not actually taking the class
-        dists = cdist(self.X_train, X)
+        dists = cdist(X, self.X_train)
         return dists
 
     def predict_labels(self, dists, k=1):
@@ -173,8 +173,7 @@ class KNearestNeighbor(object):
             # Hint: Look up the function numpy.argsort.                             #
             #########################################################################
             # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
-
-            pass
+            closest_y = np.argsort(dists[i])[:k]
 
             # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
             #########################################################################
@@ -186,7 +185,9 @@ class KNearestNeighbor(object):
             #########################################################################
             # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
-            pass
+            knn_labels = self.y_train[closest_y]
+            labels, counts = np.unique(knn_labels, return_counts=True)
+            y_pred[i] = labels[np.where(counts==np.max(counts))[0]].min()
 
             # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 

@@ -7,6 +7,12 @@ console.cloud.google.com
 Acount: Law Stanford
 Project Organization: law.stanford.edu
 
+Once you turn on the engine, type:
+
+```
+gcloud beta compute --project "stanford-cs-231n" ssh --zone "us-west1-b" "stanford-cs-231n-vm"
+```
+
 # Jupyter Notebook
 Note, that once remote, to access the Jupyter Notebook:
 

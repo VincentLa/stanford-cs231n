@@ -20,6 +20,9 @@ def svm_loss_naive(W, X, y, reg):
     Returns a tuple of:
     - loss as single float
     - gradient with respect to weights W; an array of same shape as W
+
+    See https://mlxai.github.io/2017/01/06/vectorized-implementation-of-svm-loss-and-gradient-update.html
+    that provides a pretty good solution here.
     """
     dW = np.zeros(W.shape) # initialize the gradient as zero
 
@@ -35,6 +38,8 @@ def svm_loss_naive(W, X, y, reg):
                 continue
             margin = scores[j] - correct_class_score + 1 # note delta = 1
             if margin > 0:
+                dW[:, y[i]] -= X[i]  # Added by Vincent
+                dW[:,j] += X[i]  # Added by Vincent (see notes written in binder)
                 loss += margin
 
     # Right now the loss is a sum over all training examples, but we want it
@@ -47,15 +52,15 @@ def svm_loss_naive(W, X, y, reg):
     #############################################################################
     # TODO:                                                                     #
     # Compute the gradient of the loss function and store it dW.                #
-    # Rather that first computing the loss and then computing the derivative,   #
+    # Rather than first computing the loss and then computing the derivative,   #
     # it may be simpler to compute the derivative at the same time that the     #
     # loss is being computed. As a result you may need to modify some of the    #
     # code above to compute the gradient.                                       #
     #############################################################################
     # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
-    pass
-
+    # Edited the loop above
+    
     # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
     
     return loss, dW

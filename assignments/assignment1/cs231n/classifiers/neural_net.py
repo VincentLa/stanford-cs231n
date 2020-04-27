@@ -99,7 +99,7 @@ class TwoLayerNet(object):
         print('Printing Shape of X: {}'.format(X.shape))
         print('Printing Shape of b1: {}'.format(b1.shape))
 
-        h = relu(np.dot(W1, X) + b1)
+        h = relu(np.dot(X, W1) + b1)
         print('Printing Shape of h: {}'.format(h.shape))
 
         # Implementing softmax

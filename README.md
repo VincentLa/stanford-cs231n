@@ -32,6 +32,9 @@ http://35.212.157.230:8888/
 
 This is based off the static IP in Google Cloud
 
+## To Push back to GitHub
+Note, that to push back to GitHub, with 2FA, you get an authentication issue. For now, what I did, was generated a token (https://medium.com/@ginnyfahs/github-error-authentication-failed-from-command-line-3a545bfd0ca8). The actual token is stored as an environment variable GITHUB_TOKEN (in my local bash_profile)
+
 # Setup Instructions
 For instructions on setting up Google Cloud: https://github.com/cs231n/gcloud
 

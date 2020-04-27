@@ -163,6 +163,9 @@ class TwoLayerNet(object):
         #############################################################################
         # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
+        # Next Steps
+        #   1. Draw Computational Graph (see https://piazza.com/class/k76zko2awvo7jc?cid=379) as an example
+        #   2. Review https://cs231n.github.io/neural-networks-case-study/#net
         pass
 
         # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****

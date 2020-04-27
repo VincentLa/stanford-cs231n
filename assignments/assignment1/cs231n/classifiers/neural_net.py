@@ -146,7 +146,8 @@ class TwoLayerNet(object):
 
         # Add in L2 Regularization
         # reg: corresponds to lambda
-        loss += reg * .5 * (np.linalg.norm(W1)**2 + np.linalg.norm(W2)**2)
+        # Note in https://cs231n.github.io/neural-networks-2/, it says that it is common to add .5, but that doesn't seem to match the notebook. Maybe was updated in newer notebook?
+        loss += reg * (np.linalg.norm(W1)**2 + np.linalg.norm(W2)**2)
 
 
 

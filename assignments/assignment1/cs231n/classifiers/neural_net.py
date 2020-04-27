@@ -141,6 +141,15 @@ class TwoLayerNet(object):
             print(L_i)
             loss += L_i
 
+        # Average loss over input size
+        loss /= N
+
+        # Add in L2 Regularization
+        # reg: corresponds to lambda
+        loss += reg * (np.linalg.norm(W1)**2 + np.linalg.norm(W2)**2)
+
+
+
 
         # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 

@@ -6,6 +6,22 @@ import numpy as np
 import matplotlib.pyplot as plt
 from past.builtins import xrange
 
+
+def relu(X):
+    """Implementing ReLu for Numpy"""
+    return np.maximum(0, X)
+
+
+def softmax(X):
+    """
+    Implementing softmax for Numpy
+
+    https://medium.com/ai%C2%B3-theory-practice-business/a-beginners-guide-to-numpy-with-sigmoid-relu-and-softmax-activation-functions-25b840a9a272
+    """
+    expo = np.exp(X)
+    expo_sum = np.sum(np.exp(X))
+    return expo/expo_sum
+
 class TwoLayerNet(object):
     """
     A two-layer fully-connected neural network. The net has an input dimension of
@@ -66,8 +82,6 @@ class TwoLayerNet(object):
         - grads: Dictionary mapping parameter names to gradients of those parameters
           with respect to the loss function; has the same keys as self.params.
         """
-        print('Hello?')
-
         # Unpack variables from the params dictionary
         W1, b1 = self.params['W1'], self.params['b1']
         W2, b2 = self.params['W2'], self.params['b2']
@@ -81,8 +95,16 @@ class TwoLayerNet(object):
         # shape (N, C).                                                             #
         #############################################################################
         # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
+        print('Printing Shape of W1: {}'.format(W1.shape))
+        print('Printing Shape of X: {}'.format(X.shape))
+        print('Printing Shape of b1: {}'.format(b1.shape))
 
-        scores = 5
+        h = relu(np.dot(W1, x) + b1)
+        print('Printing Shape of h: {}'.format(h.shape))
+
+        # Implementing softmax
+        # https://medium.com/ai%C2%B3-theory-practice-business/a-beginners-guide-to-numpy-with-sigmoid-relu-and-softmax-activation-functions-25b840a9a272
+        # scores = softmax(np.dot(W2, h))
 
         # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 

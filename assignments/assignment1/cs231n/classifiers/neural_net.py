@@ -146,7 +146,7 @@ class TwoLayerNet(object):
 
         # Add in L2 Regularization
         # reg: corresponds to lambda
-        loss += reg * (np.linalg.norm(W1)**2 + np.linalg.norm(W2)**2)
+        loss += reg * .5 * (np.linalg.norm(W1)**2 + np.linalg.norm(W2)**2)
 
 
 

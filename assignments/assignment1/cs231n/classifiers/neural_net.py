@@ -125,7 +125,21 @@ class TwoLayerNet(object):
         #############################################################################
         # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
-        pass
+        loss = 0
+
+        for index, yi in enumerate(scores):
+            """
+            Loop through Input
+
+            Calculate Loss using cross entroy softmax for each input
+            """
+            # Calculate softmax for the input
+            yi_softmax = softmax(yi)
+
+            # The loss is the one associated with the class label
+            L_i = -1 * np.log(yi_softmax[y[index]])
+            loss += L_i
+
 
         # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 

@@ -138,6 +138,7 @@ class TwoLayerNet(object):
 
             # The loss is the one associated with the class label
             L_i = -1 * np.log(yi_softmax[y[index]])
+            print(L_i)
             loss += L_i
 
 

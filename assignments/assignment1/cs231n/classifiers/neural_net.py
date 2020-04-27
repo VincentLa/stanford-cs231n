@@ -99,13 +99,12 @@ class TwoLayerNet(object):
         print('Printing Shape of X: {}'.format(X.shape))
         print('Printing Shape of b1: {}'.format(b1.shape))
         print('Printing Shape of W2: {}'.format(W2.shape))
+        print('Printing Shape of b2: {}'.format(b2.shape))
 
         h = relu(np.dot(X, W1) + b1)
         print('Printing Shape of h: {}'.format(h.shape))
 
-        # Implementing softmax
-        # https://medium.com/ai%C2%B3-theory-practice-business/a-beginners-guide-to-numpy-with-sigmoid-relu-and-softmax-activation-functions-25b840a9a272
-        scores = softmax(np.dot(h, W2) + b2)
+        scores = np.dot(h, W2) + b2
 
         print('Printing Shape of Scores: {}'.format(scores.shape))
 

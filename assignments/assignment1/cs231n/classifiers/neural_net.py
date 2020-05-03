@@ -101,7 +101,8 @@ class TwoLayerNet(object):
         print('Printing Shape of W2: {}'.format(W2.shape))
         print('Printing Shape of b2: {}'.format(b2.shape))
 
-        h = relu(np.dot(X, W1) + b1)
+        fc1 = np.dot(X, W1) + b1
+        h = relu(fc1)
         print('Printing Shape of h: {}'.format(h.shape))
 
         scores = np.dot(h, W2) + b2
@@ -178,9 +179,42 @@ class TwoLayerNet(object):
         softmax_gradient = np.copy(softmax_matrix)
         softmax_gradient[:, y] -= 1
 
-        print('Printing Softmax Gradient Shape: {}'.format(softmax_gradient))
+        print('Printing Softmax Gradient Shape: {}'.format(softmax_gradient.shape))
         
+        # Computing gradient for W2
+        # Needs to be (10, 3) since that's the size for W2
+        # Softmax_gradient: (5, 3)
+        dW2 = h.T.dot(softmax_gradient)
+        print('Printing dW2 Shape: {}'.format(dW2.shape))
 
+        # Computing gradient for b2
+        # Needs to be (3, 1) since that's the size for b2
+        # softmax_gradient: (5, 3)
+        db2 = softmax_gradient.sum(axis=0)
+
+        # Computing gradient for b1
+        # If you look at computational graph, this is softmax grad * derivative of ReLU
+        # First calculate gradient for ReLu
+        dReLU = softmax_gradient.dot(W2.T)  # dRelu.shape = (5, 10)
+        print('Printing dReLU Shape: {}'.format(dReLU.shape))
+
+        # Next, calculate gradient at node "fc1" which is the x*w1 + b1
+        dfc1 = dReLU * (fc1 > 0)
+
+        # Finally compute gradient for b1
+        db1 = dfc1.sum(axis=0)
+
+        # Compute gradient for W1
+        dW1 = X.T.dot(dfc1)
+
+        # regularization gradient
+        dW1 += reg * 2 * W1
+        dW2 += reg * 2 * W2
+
+        grads['W2'] = dW2
+        grads['b2'] = db2
+        grads['b1'] = db1
+        grads['W1'] = dW1
         # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
         return loss, grads

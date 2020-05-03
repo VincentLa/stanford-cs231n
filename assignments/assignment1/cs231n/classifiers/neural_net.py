@@ -178,7 +178,7 @@ class TwoLayerNet(object):
         # Derivative of softmax comes from:
         # https://cs231n.github.io/neural-networks-case-study/#net
         softmax_gradient = np.copy(softmax_matrix)
-        softmax_gradient[:, y] -= 1 
+        softmax_gradient[np.arange(N), y] -= 1 
         softmax_gradient /= N  # Although i'm not 100% sure why we need to divide by N
 
         if debug: print('Printing Softmax Gradient Shape: {}'.format(softmax_gradient.shape))
@@ -213,10 +213,7 @@ class TwoLayerNet(object):
         dW1 += reg * 2 * W1
         dW2 += reg * 2 * W2
 
-        grads['W2'] = dW2
-        grads['b2'] = db2
-        grads['b1'] = db1
-        grads['W1'] = dW1
+        grads = {'W1':dW1, 'b1':db1, 'W2':dW2, 'b2':db2}
         # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
         return loss, grads

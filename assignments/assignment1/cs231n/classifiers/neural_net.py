@@ -138,7 +138,7 @@ class TwoLayerNet(object):
 
             # The loss is the one associated with the class label
             L_i = -1 * np.log(yi_softmax[y[index]])
-            print(L_i)
+            print('printing loss {}'.format(L_i))
             loss += L_i
 
         # Average loss over input size
@@ -166,7 +166,20 @@ class TwoLayerNet(object):
         # Next Steps
         #   1. Draw Computational Graph (see https://piazza.com/class/k76zko2awvo7jc?cid=379) as an example
         #   2. Review https://cs231n.github.io/neural-networks-case-study/#net
-        pass
+        
+        # Recreate Scores Matrix
+        # Probably could have been more efficient to do this in forward pass
+        # But that's ok
+        scores_exp = np.exp(scores)
+        softmax_matrix = scores_exp / np.sum(scores_exp, axis=1, keepdims=True)
+
+        # Derivative of softmax comes from:
+        # https://cs231n.github.io/neural-networks-case-study/#net
+        softmax_gradient = np.copy(softmax_matrix)
+        softmax_gradient[:, y] -= 1
+
+        print('Printing Softmax Gradient Shape: {}'.format(softmax_gradient))
+        
 
         # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 

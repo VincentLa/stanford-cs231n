@@ -178,7 +178,8 @@ class TwoLayerNet(object):
         # Derivative of softmax comes from:
         # https://cs231n.github.io/neural-networks-case-study/#net
         softmax_gradient = np.copy(softmax_matrix)
-        softmax_gradient[:, y] -= 5
+        softmax_gradient[:, y] -= 1
+        softmax_gradient /= N
 
         if debug: print('Printing Softmax Gradient Shape: {}'.format(softmax_gradient.shape))
         

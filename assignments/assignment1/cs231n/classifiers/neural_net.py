@@ -59,7 +59,7 @@ class TwoLayerNet(object):
         self.params['W2'] = std * np.random.randn(hidden_size, output_size)
         self.params['b2'] = np.zeros(output_size)
 
-    def loss(self, X, y=None, reg=0.0):
+    def loss(self, X, y=None, reg=0.0, debug=True):
         """
         Compute the loss and gradients for a two layer fully connected neural
         network.
@@ -95,19 +95,20 @@ class TwoLayerNet(object):
         # shape (N, C).                                                             #
         #############################################################################
         # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
-        print('Printing Shape of W1: {}'.format(W1.shape))
-        print('Printing Shape of X: {}'.format(X.shape))
-        print('Printing Shape of b1: {}'.format(b1.shape))
-        print('Printing Shape of W2: {}'.format(W2.shape))
-        print('Printing Shape of b2: {}'.format(b2.shape))
+        if debug:
+            print('Printing Shape of W1: {}'.format(W1.shape))
+            print('Printing Shape of X: {}'.format(X.shape))
+            print('Printing Shape of b1: {}'.format(b1.shape))
+            print('Printing Shape of W2: {}'.format(W2.shape))
+            print('Printing Shape of b2: {}'.format(b2.shape))
 
         fc1 = np.dot(X, W1) + b1
         h = relu(fc1)
-        print('Printing Shape of h: {}'.format(h.shape))
+        if debug: print('Printing Shape of h: {}'.format(h.shape))
 
         scores = np.dot(h, W2) + b2
 
-        print('Printing Shape of Scores: {}'.format(scores.shape))
+        if debug: print('Printing Shape of Scores: {}'.format(scores.shape))
 
         # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
@@ -139,7 +140,7 @@ class TwoLayerNet(object):
 
             # The loss is the one associated with the class label
             L_i = -1 * np.log(yi_softmax[y[index]])
-            print('printing loss {}'.format(L_i))
+            if debug: print('printing loss {}'.format(L_i))
             loss += L_i
 
         # Average loss over input size
@@ -179,13 +180,13 @@ class TwoLayerNet(object):
         softmax_gradient = np.copy(softmax_matrix)
         softmax_gradient[:, y] -= 1
 
-        print('Printing Softmax Gradient Shape: {}'.format(softmax_gradient.shape))
+        if debug: print('Printing Softmax Gradient Shape: {}'.format(softmax_gradient.shape))
         
         # Computing gradient for W2
         # Needs to be (10, 3) since that's the size for W2
         # Softmax_gradient: (5, 3)
         dW2 = h.T.dot(softmax_gradient)
-        print('Printing dW2 Shape: {}'.format(dW2.shape))
+        if debug: print('Printing dW2 Shape: {}'.format(dW2.shape))
 
         # Computing gradient for b2
         # Needs to be (3, 1) since that's the size for b2
@@ -196,7 +197,7 @@ class TwoLayerNet(object):
         # If you look at computational graph, this is softmax grad * derivative of ReLU
         # First calculate gradient for ReLu
         dReLU = softmax_gradient.dot(W2.T)  # dRelu.shape = (5, 10)
-        print('Printing dReLU Shape: {}'.format(dReLU.shape))
+        if debug: print('Printing dReLU Shape: {}'.format(dReLU.shape))
 
         # Next, calculate gradient at node "fc1" which is the x*w1 + b1
         dfc1 = dReLU * (fc1 > 0)

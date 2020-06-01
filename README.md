@@ -55,5 +55,20 @@ http://cs231n.github.io/classification/
 # Recording Lectures
 We can record lectures by using Quicktime Player (which comes for free on Mac). Click Record Entire Screen. Also make sure to click on Microphone to record audio.
 
+# Project Ideas
+1. Sentiment Analysis: https://machinelearningmastery.com/deep-learning-bag-of-words-model-sentiment-analysis/
+2. Using Yolov3 for 9000 classes: https://stackoverflow.com/questions/57853707/is-it-possible-to-use-yolo3-with-yolo9000-weights-for-more-classes
+3. Yolo9000 Weights: https://awesomeopensource.com/project/philipperemy/yolo-9000
+
+## To Dos
+1. 2020-05-19
+    1. In the YOLOv3 notebook, move to next frame by uncommenting out a couple lines at the end of the forloop
+    2. Will want to store yolo results (objects detected, confidence, and bounding boxes for each frame)
+    3. Aggregate them at the video level
+    4. Perform bag of words/sentiment analysis model on training data to predict sentiment
+2. After (Stretch Goals)
+    1. Try Yolo9000 weight for yolov3 to see if yolov3 can predict more images and if the sentiment model improves
+
 # Other Helpful Notes
 1. http://cs229.stanford.edu/section/cs229-linalg.pdf
+
